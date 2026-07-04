@@ -196,6 +196,23 @@
             <option value="Solved">Solved</option>
             <option value="Revisit">Revisit</option>
           </select>
+          <button id="add-problem-btn" class="btn btn-primary">Add Problem</button>
+        </div>
+
+        <div id="add-problem-form" class="filters-bar animate-slide-up stagger-1" style="display: none; flex-wrap: wrap; gap: 1rem;">
+           <input type="text" id="new-prob-name" class="input-control" placeholder="Problem Name" style="flex: 2; min-width: 200px;">
+           <input type="text" id="new-prob-id" class="input-control" placeholder="ID (e.g. 101)" style="flex: 1; min-width: 80px;">
+           <input type="text" id="new-prob-pattern" class="input-control" placeholder="Pattern (e.g. Array)" style="flex: 1; min-width: 150px;">
+           <select id="new-prob-diff" class="input-control" style="flex: 1; min-width: 100px;">
+             <option value="Easy">Easy</option>
+             <option value="Medium">Medium</option>
+             <option value="Hard">Hard</option>
+           </select>
+           <select id="new-prob-topic" class="input-control" style="flex: 1.5; min-width: 150px;">
+             <!-- populated by JS -->
+           </select>
+           <button id="save-new-prob-btn" class="btn btn-primary">Save</button>
+           <button id="cancel-new-prob-btn" class="btn btn-outline">Cancel</button>
         </div>
 
         <div class="topic-list animate-slide-up stagger-2" id="topic-list">

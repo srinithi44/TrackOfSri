@@ -5,6 +5,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const difficultyFilter = document.getElementById('difficulty-filter');
   const statusFilter = document.getElementById('status-filter');
   const totalProgressText = document.getElementById('total-progress-text');
+
+  const addProblemBtn = document.getElementById('add-problem-btn');
+  const addProblemForm = document.getElementById('add-problem-form');
+  const saveNewProbBtn = document.getElementById('save-new-prob-btn');
+  const cancelNewProbBtn = document.getElementById('cancel-new-prob-btn');
+  const newProbName = document.getElementById('new-prob-name');
+  const newProbId = document.getElementById('new-prob-id');
+  const newProbPattern = document.getElementById('new-prob-pattern');
+  const newProbDiff = document.getElementById('new-prob-diff');
+  const newProbTopic = document.getElementById('new-prob-topic');
   
   let dsaData = [];
 
@@ -14,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (localData) {
       dsaData = localData;
+      populateTopicsDropdown();
       renderTopics();
       updateOverallProgress();
     } else {
@@ -22,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const json = await response.json();
         dsaData = json.topics;
         StorageHelper.set('dsaData', dsaData);
+        populateTopicsDropdown();
         renderTopics();
         updateOverallProgress();
       } catch (e) {
@@ -33,6 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const saveData = () => {
     StorageHelper.set('dsaData', dsaData);
     updateOverallProgress();
+  };
+
+  const populateTopicsDropdown = () => {
+    newProbTopic.innerHTML = '';
+    dsaData.forEach((topic, idx) => {
+      const opt = document.createElement('option');
+      opt.value = idx;
+      opt.textContent = topic.name;
+      newProbTopic.appendChild(opt);
+    });
   };
 
   const updateOverallProgress = () => {
@@ -174,6 +196,55 @@ document.addEventListener('DOMContentLoaded', () => {
   searchInput.addEventListener('input', renderTopics);
   difficultyFilter.addEventListener('change', renderTopics);
   statusFilter.addEventListener('change', renderTopics);
+
+  if (addProblemBtn) {
+    addProblemBtn.addEventListener('click', () => {
+      addProblemForm.style.display = 'flex';
+      addProblemBtn.style.display = 'none';
+    });
+  }
+
+  if (cancelNewProbBtn) {
+    cancelNewProbBtn.addEventListener('click', () => {
+      addProblemForm.style.display = 'none';
+      if (addProblemBtn) addProblemBtn.style.display = 'inline-flex';
+      newProbName.value = '';
+      newProbId.value = '';
+      newProbPattern.value = '';
+    });
+  }
+
+  if (saveNewProbBtn) {
+    saveNewProbBtn.addEventListener('click', () => {
+      const name = newProbName.value.trim();
+      const id = newProbId.value.trim();
+      const pattern = newProbPattern.value.trim();
+      const diff = newProbDiff.value;
+      const topicIdx = newProbTopic.value;
+
+      if (!name || !id) {
+        alert('Problem Name and ID are required!');
+        return;
+      }
+
+      const newProblem = {
+        id: id,
+        name: name,
+        difficulty: diff,
+        pattern: pattern || 'Custom',
+        status: 'Todo',
+        revisionDate: '',
+        notes: ''
+      };
+
+      if (dsaData[topicIdx]) {
+        dsaData[topicIdx].problems.push(newProblem);
+        saveData();
+        renderTopics();
+        cancelNewProbBtn.click();
+      }
+    });
+  }
 
   loadData();
 });
