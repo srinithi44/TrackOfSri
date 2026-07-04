@@ -103,17 +103,48 @@ document.addEventListener('DOMContentLoaded', () => {
       sessionStorage.removeItem('streakIncremented');
       
       // If we are on dashboard, update it instantly
-      if (typeof renderDashboardStats === 'function') {
-        renderDashboardStats();
-      } else {
-        // Try to update global stats visually if needed
-        const streakCounters = document.querySelectorAll('#streak-count');
-        streakCounters.forEach(el => {
-           el.textContent = StorageHelper.get('userStats').streak;
-        });
+      if (typeof window.renderDashboardStats === 'function') {
+        window.renderDashboardStats();
       }
     }
+    updateGlobalStreakUI();
   });
+
+  // Inject Global Streak Indicator into Topbar
+  const topbarActions = document.querySelector('.topbar-actions');
+  if (topbarActions) {
+    const streakBadge = document.createElement('div');
+    streakBadge.className = 'badge badge-warning';
+    streakBadge.style.display = 'flex';
+    streakBadge.style.alignItems = 'center';
+    streakBadge.style.gap = '0.25rem';
+    streakBadge.innerHTML = `<span>🔥</span><span id="global-streak-count">${StorageHelper.get('userStats', {streak: 0}).streak}</span>`;
+    
+    // Insert before the theme toggle
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    if (themeBtn) {
+      topbarActions.insertBefore(streakBadge, themeBtn);
+    } else {
+      topbarActions.prepend(streakBadge);
+    }
+  }
+
+  const updateGlobalStreakUI = () => {
+    const globalCount = document.getElementById('global-streak-count');
+    if (globalCount) {
+      globalCount.textContent = StorageHelper.get('userStats', {streak: 0}).streak;
+      globalCount.classList.add('animate-burn');
+      setTimeout(() => globalCount.classList.remove('animate-burn'), 2000);
+    }
+    
+    // Also update any specific on-page streak counters
+    const streakCounters = document.querySelectorAll('#streak-count');
+    streakCounters.forEach(el => {
+       el.textContent = StorageHelper.get('userStats', {streak: 0}).streak;
+    });
+  };
+
+  updateGlobalStreakUI();
 
   // Check pending session storage toasts on load
   if (sessionStorage.getItem('streakIncremented') === 'true') {
