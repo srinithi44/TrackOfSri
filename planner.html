@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Planner | PlacementOS</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .planner-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .planner-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .task-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1rem;
+      border-radius: var(--border-radius-sm);
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      transition: all var(--transition-fast);
+    }
+    
+    .task-item:hover {
+      border-color: var(--text-secondary);
+    }
+    
+    .task-item.completed {
+      opacity: 0.7;
+    }
+    
+    .task-item.completed .task-title {
+      text-decoration: line-through;
+      color: var(--text-secondary);
+    }
+    
+    .task-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .task-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .task-title {
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+    
+    .task-details {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-left: 2.5rem;
+      margin-top: 0.5rem;
+    }
+    
+    .priority-badge {
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--border-radius-sm);
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid;
+    }
+    
+    .priority-high { color: var(--danger); border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.1); }
+    .priority-medium { color: var(--warning); border-color: rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.1); }
+    .priority-low { color: var(--success); border-color: rgba(34, 197, 94, 0.3); background: rgba(34, 197, 94, 0.1); }
+    
+    .timer-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-full);
+      color: var(--text-primary);
+      font-size: 0.85rem;
+    }
+    
+    .timer-btn.active {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+    
+    .notes-input {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      width: 100%;
+      border-bottom: 1px dashed var(--border-color);
+      padding: 0.25rem 0;
+    }
+    
+    .notes-input:focus {
+      border-bottom-color: var(--primary);
+      color: var(--text-primary);
+    }
+    
+    .add-task-form {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .add-task-input {
+      flex: 1;
+    }
+    
+    @media (max-width: 768px) {
+      .add-task-form {
+        flex-direction: column;
+      }
+      .task-details {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar glass-panel" id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">P</div>
+        <h2 class="text-gradient">PlacementOS</h2>
+      </div>
+      
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="nav-item">📊 Dashboard</a></li>
+        <li><a href="planner.html" class="nav-item active">📅 Daily Planner</a></li>
+        <li><a href="dsa.html" class="nav-item">💻 DSA Tracker</a></li>
+        <li><a href="aptitude.html" class="nav-item">🧠 Aptitude</a></li>
+        <li><a href="communication.html" class="nav-item">🗣️ Communication</a></li>
+        <li><a href="companies.html" class="nav-item">🏢 Companies</a></li>
+        <li><a href="mock-tests.html" class="nav-item">📝 Mock Tests</a></li>
+        <li><a href="analytics.html" class="nav-item">📈 Analytics</a></li>
+        <li><a href="achievements.html" class="nav-item">🏆 Achievements</a></li>
+        <li><a href="settings.html" class="nav-item">⚙️ Settings</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Topbar -->
+      <header class="topbar glass-panel">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+          <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" placeholder="Search problems, topics, companies...">
+          </div>
+        </div>
+        
+        <div class="topbar-actions">
+          <span class="text-muted" id="current-date"></span>
+          <button class="btn-icon" id="theme-toggle-btn">☀️</button>
+          <div class="profile-btn">
+            <div class="profile-avatar">S</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content animate-fade-in">
+        <div class="planner-header">
+          <div>
+            <h1 class="text-gradient">Daily Planner</h1>
+            <p class="text-muted">Plan your day, set your priorities.</p>
+          </div>
+          <div class="badge badge-primary">Day 1 of 90</div>
+        </div>
+        
+        <div class="card animate-slide-up stagger-1">
+          <form id="add-task-form" class="add-task-form">
+            <input type="text" id="new-task-title" class="input-control add-task-input" placeholder="What needs to be done today?" required>
+            <select id="new-task-category" class="input-control" style="width: auto;">
+              <option value="DSA">DSA</option>
+              <option value="Aptitude">Aptitude</option>
+              <option value="Communication">Communication</option>
+              <option value="Revision">Revision</option>
+              <option value="Mock Test">Mock Test</option>
+              <option value="Resume">Resume</option>
+              <option value="Project">Project</option>
+            </select>
+            <select id="new-task-priority" class="input-control" style="width: auto;">
+              <option value="high">High</option>
+              <option value="medium" selected>Medium</option>
+              <option value="low">Low</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Add Task</button>
+          </form>
+          
+          <div class="task-list" id="task-list">
+            <!-- Tasks will be injected here via JS -->
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/planner.js"></script>
+  <script>
+    document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  </script>
+</body>
+</html>

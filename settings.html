@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | PlacementOS</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .settings-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-md);
+      padding: 2rem;
+      max-width: 600px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .setting-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .setting-group:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    
+    .setting-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .setting-info p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    
+    /* Toggle Switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: var(--text-secondary);
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--primary);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <aside class="sidebar glass-panel" id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">P</div>
+        <h2 class="text-gradient">PlacementOS</h2>
+      </div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="nav-item">📊 Dashboard</a></li>
+        <li><a href="planner.html" class="nav-item">📅 Daily Planner</a></li>
+        <li><a href="dsa.html" class="nav-item">💻 DSA Tracker</a></li>
+        <li><a href="aptitude.html" class="nav-item">🧠 Aptitude</a></li>
+        <li><a href="communication.html" class="nav-item">🗣️ Communication</a></li>
+        <li><a href="companies.html" class="nav-item">🏢 Companies</a></li>
+        <li><a href="mock-tests.html" class="nav-item">📝 Mock Tests</a></li>
+        <li><a href="analytics.html" class="nav-item">📈 Analytics</a></li>
+        <li><a href="achievements.html" class="nav-item">🏆 Achievements</a></li>
+        <li><a href="settings.html" class="nav-item active">⚙️ Settings</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar glass-panel">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+        <div class="topbar-actions">
+          <span class="text-muted" id="current-date"></span>
+          <div class="profile-btn"><div class="profile-avatar">S</div></div>
+        </div>
+      </header>
+
+      <div class="page-content animate-fade-in">
+        <div style="margin-bottom: 2rem;">
+          <h1 class="text-gradient">Settings</h1>
+          <p class="text-muted">Manage your application preferences.</p>
+        </div>
+        
+        <div class="settings-card animate-slide-up stagger-1">
+          <div class="setting-group">
+            <div class="setting-info">
+              <h3>Beige Mode Toggle</h3>
+              <p>Switch between Dark Mode and Beige Light Mode.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="settings-theme-toggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+          
+          <div class="setting-group">
+            <div class="setting-info">
+              <h3>Export Data</h3>
+              <p>Download a JSON file containing all your progress.</p>
+            </div>
+            <button class="btn btn-outline" id="export-btn">Export Backup</button>
+          </div>
+          
+          <div class="setting-group">
+            <div class="setting-info">
+              <h3>Import Data</h3>
+              <p>Restore your progress from a backup file.</p>
+            </div>
+            <input type="file" id="import-file" style="display: none;" accept=".json">
+            <button class="btn btn-outline" onclick="document.getElementById('import-file').click()">Import Backup</button>
+          </div>
+          
+          <div class="setting-group">
+            <div class="setting-info">
+              <h3 style="color: var(--danger);">Reset Progress</h3>
+              <p>Permanently delete all your data. This cannot be undone.</p>
+            </div>
+            <button class="btn" style="background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger);" id="reset-btn">Reset All Data</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    
+    // Theme toggle mapping for settings page
+    const settingsToggle = document.getElementById('settings-theme-toggle');
+    settingsToggle.checked = document.documentElement.hasAttribute('data-theme');
+    
+    settingsToggle.addEventListener('change', (e) => {
+      const newTheme = e.target.checked ? 'beige' : 'dark';
+      if (newTheme === 'beige') {
+        document.documentElement.setAttribute('data-theme', 'beige');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+      StorageHelper.setTheme(newTheme);
+      window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: newTheme } }));
+    });
+    
+    // Export Data
+    document.getElementById('export-btn').addEventListener('click', () => {
+      const allData = {};
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('placementOS_')) {
+          allData[key] = localStorage.getItem(key);
+        }
+      }
+      
+      const blob = new Blob([JSON.stringify(allData, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `placementOS_backup_${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+    
+    // Import Data
+    document.getElementById('import-file').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const data = JSON.parse(event.target.result);
+          for (const key in data) {
+            if (key.startsWith('placementOS_')) {
+              localStorage.setItem(key, data[key]);
+            }
+          }
+          alert('Data imported successfully! Reloading...');
+          location.reload();
+        } catch (err) {
+          alert('Invalid backup file.');
+        }
+      };
+      reader.readAsText(file);
+    });
+    
+    // Reset Data
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      if (confirm('Are you sure you want to delete all your progress? This action cannot be undone.')) {
+        const keysToRemove = [];
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key.startsWith('placementOS_')) {
+            keysToRemove.push(key);
+          }
+        }
+        keysToRemove.forEach(key => localStorage.removeItem(key));
+        alert('All data reset successfully! Redirecting to Dashboard...');
+        window.location.href = 'dashboard.html';
+      }
+    });
+  </script>
+</body>
+</html>

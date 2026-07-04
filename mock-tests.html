@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Tests | PlacementOS</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .mock-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    
+    .mock-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .mock-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-md);
+      padding: 1.5rem;
+    }
+    
+    .mock-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    
+    .btn-block {
+      width: 100%;
+      margin-top: 1rem;
+    }
+    
+    @media (max-width: 1024px) {
+      .mock-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <aside class="sidebar glass-panel" id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">P</div>
+        <h2 class="text-gradient">PlacementOS</h2>
+      </div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="nav-item">📊 Dashboard</a></li>
+        <li><a href="planner.html" class="nav-item">📅 Daily Planner</a></li>
+        <li><a href="dsa.html" class="nav-item">💻 DSA Tracker</a></li>
+        <li><a href="aptitude.html" class="nav-item">🧠 Aptitude</a></li>
+        <li><a href="communication.html" class="nav-item">🗣️ Communication</a></li>
+        <li><a href="companies.html" class="nav-item">🏢 Companies</a></li>
+        <li><a href="mock-tests.html" class="nav-item active">📝 Mock Tests</a></li>
+        <li><a href="analytics.html" class="nav-item">📈 Analytics</a></li>
+        <li><a href="achievements.html" class="nav-item">🏆 Achievements</a></li>
+        <li><a href="settings.html" class="nav-item">⚙️ Settings</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar glass-panel">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+        <div class="topbar-actions">
+          <span class="text-muted" id="current-date"></span>
+          <button class="btn-icon" id="theme-toggle-btn">☀️</button>
+          <div class="profile-btn"><div class="profile-avatar">S</div></div>
+        </div>
+      </header>
+
+      <div class="page-content animate-fade-in">
+        <div class="mock-header">
+          <div>
+            <h1 class="text-gradient">Mock Test Dashboard</h1>
+            <p class="text-muted">Track your weekly performance.</p>
+          </div>
+          <button class="btn btn-primary" id="add-mock-btn">+ Add Mock Result</button>
+        </div>
+        
+        <div class="mock-grid animate-slide-up stagger-1" id="mock-grid">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/mock-test.js"></script>
+  <script>
+    document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  </script>
+</body>
+</html>

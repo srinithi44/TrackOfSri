@@ -1,0 +1,82 @@
+{
+  "topics": [
+    {
+      "name": "Arrays",
+      "completion": 0,
+      "problems": [
+        { "id": "73", "name": "Set Matrix Zeroes", "difficulty": "Medium", "pattern": "Array", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "118", "name": "Pascal's Triangle", "difficulty": "Easy", "pattern": "Array", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "31", "name": "Next Permutation", "difficulty": "Medium", "pattern": "Array", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "53", "name": "Maximum Subarray", "difficulty": "Medium", "pattern": "Kadane's", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "75", "name": "Sort Colors", "difficulty": "Medium", "pattern": "Two Pointers", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "121", "name": "Best Time to Buy and Sell Stock", "difficulty": "Easy", "pattern": "Array", "status": "Todo", "revisionDate": "", "notes": "" }
+      ]
+    },
+    {
+      "name": "Arrays Part-II",
+      "completion": 0,
+      "problems": [
+        { "id": "48", "name": "Rotate Image", "difficulty": "Medium", "pattern": "Matrix", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "56", "name": "Merge Intervals", "difficulty": "Medium", "pattern": "Sorting", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "88", "name": "Merge Sorted Array", "difficulty": "Easy", "pattern": "Two Pointers", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "287", "name": "Find the Duplicate Number", "difficulty": "Medium", "pattern": "Two Pointers", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "1", "name": "Two Sum", "difficulty": "Easy", "pattern": "Hashing", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "15", "name": "3Sum", "difficulty": "Medium", "pattern": "Two Pointers", "status": "Todo", "revisionDate": "", "notes": "" }
+      ]
+    },
+    {
+      "name": "Linked List",
+      "completion": 0,
+      "problems": [
+        { "id": "206", "name": "Reverse Linked List", "difficulty": "Easy", "pattern": "Linked List", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "876", "name": "Middle of the Linked List", "difficulty": "Easy", "pattern": "Two Pointers", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "21", "name": "Merge Two Sorted Lists", "difficulty": "Easy", "pattern": "Linked List", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "19", "name": "Remove Nth Node From End of List", "difficulty": "Medium", "pattern": "Two Pointers", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "2", "name": "Add Two Numbers", "difficulty": "Medium", "pattern": "Linked List", "status": "Todo", "revisionDate": "", "notes": "" }
+      ]
+    },
+    {
+      "name": "Linked List and Arrays",
+      "completion": 0,
+      "problems": [
+        { "id": "61", "name": "Rotate List", "difficulty": "Medium", "pattern": "Linked List", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "138", "name": "Copy List with Random Pointer", "difficulty": "Medium", "pattern": "Hashing", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "15", "name": "3Sum", "difficulty": "Medium", "pattern": "Two Pointers", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "42", "name": "Trapping Rain Water", "difficulty": "Hard", "pattern": "Two Pointers", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "26", "name": "Remove Duplicates from Sorted Array", "difficulty": "Easy", "pattern": "Two Pointers", "status": "Todo", "revisionDate": "", "notes": "" }
+      ]
+    },
+    {
+      "name": "Greedy Algorithm",
+      "completion": 0,
+      "problems": [
+        { "id": "455", "name": "Assign Cookies", "difficulty": "Easy", "pattern": "Greedy", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "860", "name": "Lemonade Change", "difficulty": "Easy", "pattern": "Greedy", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "45", "name": "Jump Game II", "difficulty": "Medium", "pattern": "Greedy", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "55", "name": "Jump Game", "difficulty": "Medium", "pattern": "Greedy", "status": "Todo", "revisionDate": "", "notes": "" }
+      ]
+    },
+    {
+      "name": "Recursion",
+      "completion": 0,
+      "problems": [
+        { "id": "39", "name": "Combination Sum", "difficulty": "Medium", "pattern": "Recursion", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "40", "name": "Combination Sum II", "difficulty": "Medium", "pattern": "Recursion", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "131", "name": "Palindrome Partitioning", "difficulty": "Medium", "pattern": "Recursion", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "46", "name": "Permutations", "difficulty": "Medium", "pattern": "Recursion", "status": "Todo", "revisionDate": "", "notes": "" }
+      ]
+    },
+    {
+      "name": "Binary Search",
+      "completion": 0,
+      "problems": [
+        { "id": "704", "name": "Binary Search", "difficulty": "Easy", "pattern": "Binary Search", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "35", "name": "Search Insert Position", "difficulty": "Easy", "pattern": "Binary Search", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "74", "name": "Search a 2D Matrix", "difficulty": "Medium", "pattern": "Binary Search", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "33", "name": "Search in Rotated Sorted Array", "difficulty": "Medium", "pattern": "Binary Search", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "153", "name": "Find Minimum in Rotated Sorted Array", "difficulty": "Medium", "pattern": "Binary Search", "status": "Todo", "revisionDate": "", "notes": "" },
+        { "id": "540", "name": "Single Element in a Sorted Array", "difficulty": "Medium", "pattern": "Binary Search", "status": "Todo", "revisionDate": "", "notes": "" }
+      ]
+    }
+  ]
+}

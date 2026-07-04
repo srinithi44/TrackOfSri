@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Of Sri | Discipline beats motivation</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    .landing-container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .logo {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+    
+    .tagline {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      font-style: italic;
+    }
+    
+    .enter-btn {
+      padding: 1rem 3rem;
+      font-size: 1.2rem;
+      border-radius: var(--border-radius-full);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="landing-container animate-fade-in">
+    <div class="logo text-gradient animate-slide-up stagger-1">PlacementOS</div>
+    <div class="tagline animate-slide-up stagger-2">"Discipline beats motivation."</div>
+    <div class="animate-slide-up stagger-3">
+      <a href="dashboard.html" class="btn btn-primary enter-btn">Enter Workspace</a>
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

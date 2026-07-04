@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | PlacementOS</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar glass-panel" id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">P</div>
+        <h2 class="text-gradient">PlacementOS</h2>
+      </div>
+      
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="nav-item active">📊 Dashboard</a></li>
+        <li><a href="planner.html" class="nav-item">📅 Daily Planner</a></li>
+        <li><a href="dsa.html" class="nav-item">💻 DSA Tracker</a></li>
+        <li><a href="aptitude.html" class="nav-item">🧠 Aptitude</a></li>
+        <li><a href="communication.html" class="nav-item">🗣️ Communication</a></li>
+        <li><a href="companies.html" class="nav-item">🏢 Companies</a></li>
+        <li><a href="mock-tests.html" class="nav-item">📝 Mock Tests</a></li>
+        <li><a href="analytics.html" class="nav-item">📈 Analytics</a></li>
+        <li><a href="achievements.html" class="nav-item">🏆 Achievements</a></li>
+        <li><a href="settings.html" class="nav-item">⚙️ Settings</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Topbar -->
+      <header class="topbar glass-panel">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+          <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" placeholder="Search problems, topics, companies...">
+          </div>
+        </div>
+        
+        <div class="topbar-actions">
+          <span class="text-muted" id="current-date"></span>
+          <button class="btn-icon" id="theme-toggle-btn">☀️</button>
+          <button class="btn-icon">🔔</button>
+          <div class="profile-btn">
+            <div class="profile-avatar">S</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content animate-fade-in">
+        <div class="dashboard-grid">
+          
+          <!-- Welcome Card -->
+          <div class="welcome-card card animate-slide-up stagger-1">
+            <div class="welcome-text">
+              <h1>Welcome back, <span id="user-name">Student</span>!</h1>
+              <p>You have <strong id="days-remaining">90</strong> days left until placements. Keep pushing!</p>
+            </div>
+            <div class="welcome-action hidden-mobile">
+              <a href="planner.html" class="btn btn-outline" style="border-color: white; color: white;">View Today's Plan</a>
+            </div>
+          </div>
+
+          <!-- Stats Cards -->
+          <div class="stat-card card animate-slide-up stagger-2" style="position: relative; overflow: hidden;">
+            <div class="stat-header">
+              <div class="stat-icon warning" id="streak-icon">🔥</div>
+              Current Streak
+            </div>
+            <div class="stat-value"><span id="streak-count">0</span> Days</div>
+            <div id="streak-motivation" style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem; font-weight: 500;">
+              Don't break the chain! Start today.
+            </div>
+          </div>
+          
+          <div class="stat-card card animate-slide-up stagger-2">
+            <div class="stat-header">
+              <div class="stat-icon primary">⏱️</div>
+              Total Study Hours
+            </div>
+            <div class="stat-value"><span id="study-hours">0</span>h</div>
+          </div>
+
+          <div class="stat-card card animate-slide-up stagger-2">
+            <div class="stat-header">
+              <div class="stat-icon success">🎯</div>
+              Weekly Goal
+            </div>
+            <div class="stat-value">25/40</div>
+            <div class="progress-container">
+              <div class="progress-bar" style="width: 62.5%"></div>
+            </div>
+          </div>
+
+          <div class="stat-card card animate-slide-up stagger-2">
+            <div class="stat-header">
+              <div class="stat-icon secondary">📝</div>
+              Next Mock Test
+            </div>
+            <div class="stat-value" style="font-size: 1.4rem; margin-top: 0.4rem;">Sunday, 10 AM</div>
+          </div>
+
+          <!-- Weekly Chart -->
+          <div class="chart-card card animate-slide-up stagger-3">
+            <h3 style="margin-bottom: 1rem;">Weekly Study Activity</h3>
+            <div style="height: calc(100% - 30px); position: relative;">
+              <canvas id="weeklyStudyChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Progress Rings (Replaced with bars for now, styled nicely) -->
+          <div class="progress-rings-card card animate-slide-up stagger-3">
+            <h3>Module Progress</h3>
+            
+            <div class="ring-container">
+              <div style="flex: 1;">
+                <div class="ring-info">
+                  <h4>Data Structures & Algorithms</h4>
+                  <p><span id="dsa-val">0%</span> Completed</p>
+                </div>
+                <div class="progress-container">
+                  <div class="progress-bar" id="dsa-bar" style="width: 0%; background: linear-gradient(90deg, #2563EB, #60A5FA);"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ring-container">
+              <div style="flex: 1;">
+                <div class="ring-info">
+                  <h4>Aptitude & Reasoning</h4>
+                  <p><span id="aptitude-val">0%</span> Completed</p>
+                </div>
+                <div class="progress-container">
+                  <div class="progress-bar" id="aptitude-bar" style="width: 0%; background: linear-gradient(90deg, #7C3AED, #A78BFA);"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ring-container">
+              <div style="flex: 1;">
+                <div class="ring-info">
+                  <h4>Communication & HR</h4>
+                  <p><span id="comm-val">0%</span> Completed</p>
+                </div>
+                <div class="progress-container">
+                  <div class="progress-bar" id="comm-bar" style="width: 0%; background: linear-gradient(90deg, #22C55E, #4ADE80);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Today's Goals -->
+          <div class="goals-card card animate-slide-up stagger-4">
+            <h3>Today's Focus</h3>
+            <div class="goals-list">
+              <label class="goal-item">
+                <input type="checkbox" class="goal-checkbox">
+                <span>Solve 3 Array questions on LeetCode</span>
+              </label>
+              <label class="goal-item">
+                <input type="checkbox" class="goal-checkbox">
+                <span>Complete Quantitative Aptitude - Time & Work</span>
+              </label>
+              <label class="goal-item">
+                <input type="checkbox" class="goal-checkbox">
+                <span>Record a 2-minute self introduction</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Motivational Quote -->
+          <div class="quote-card card animate-slide-up stagger-4">
+            <div class="quote-text" id="daily-quote">"Discipline beats motivation."</div>
+            <div class="quote-author" id="daily-author">- PlacementOS</div>
+          </div>
+
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <footer style="text-align: center; padding: 1rem; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.9rem;">
+        "Small progress every day leads to big success." - PlacementOS
+      </footer>
+    </main>
+  </div>
+  
+  <div id="toast-container"></div>
+
+  <!-- JS -->
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/charts.js"></script>
+  <script>
+    // Set Current Date
+    const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, dateOptions);
+  </script>
+</body>
+</html>

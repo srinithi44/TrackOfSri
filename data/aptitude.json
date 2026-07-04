@@ -1,0 +1,27 @@
+{
+  "sections": [
+    {
+      "name": "Quantitative",
+      "chapters": [
+        { "name": "Time and Work", "questionsSolved": 15, "accuracy": 80, "weakness": "Pipes and Cisterns", "revision": false, "mockScore": 7, "progress": 50 },
+        { "name": "Percentages", "questionsSolved": 0, "accuracy": 0, "weakness": "", "revision": false, "mockScore": 0, "progress": 0 },
+        { "name": "Ratio and Proportion", "questionsSolved": 0, "accuracy": 0, "weakness": "", "revision": false, "mockScore": 0, "progress": 0 }
+      ]
+    },
+    {
+      "name": "Logical",
+      "chapters": [
+        { "name": "Blood Relations", "questionsSolved": 0, "accuracy": 0, "weakness": "", "revision": false, "mockScore": 0, "progress": 0 },
+        { "name": "Syllogism", "questionsSolved": 0, "accuracy": 0, "weakness": "", "revision": false, "mockScore": 0, "progress": 0 },
+        { "name": "Data Interpretation", "questionsSolved": 0, "accuracy": 0, "weakness": "", "revision": false, "mockScore": 0, "progress": 0 }
+      ]
+    },
+    {
+      "name": "Verbal",
+      "chapters": [
+        { "name": "Reading Comprehension", "questionsSolved": 0, "accuracy": 0, "weakness": "", "revision": false, "mockScore": 0, "progress": 0 },
+        { "name": "Sentence Correction", "questionsSolved": 0, "accuracy": 0, "weakness": "", "revision": false, "mockScore": 0, "progress": 0 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achievements | PlacementOS</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .level-card {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(37, 99, 235, 0.1));
+      border: 1px solid var(--primary);
+      border-radius: var(--border-radius-lg);
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .level-badge {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+    }
+    
+    .xp-bar {
+      width: 100%;
+      max-width: 400px;
+      height: 12px;
+      background: var(--bg-secondary);
+      border-radius: var(--border-radius-full);
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+    
+    .xp-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      width: 65%;
+      border-radius: var(--border-radius-full);
+    }
+    
+    .badges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .badge-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-md);
+      padding: 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+    
+    .badge-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+    }
+    
+    .badge-item.locked {
+      opacity: 0.5;
+      filter: grayscale(1);
+    }
+    
+    .badge-icon {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .badge-title {
+      font-weight: 600;
+    }
+    
+    .badge-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <aside class="sidebar glass-panel" id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">P</div>
+        <h2 class="text-gradient">PlacementOS</h2>
+      </div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="nav-item">📊 Dashboard</a></li>
+        <li><a href="planner.html" class="nav-item">📅 Daily Planner</a></li>
+        <li><a href="dsa.html" class="nav-item">💻 DSA Tracker</a></li>
+        <li><a href="aptitude.html" class="nav-item">🧠 Aptitude</a></li>
+        <li><a href="communication.html" class="nav-item">🗣️ Communication</a></li>
+        <li><a href="companies.html" class="nav-item">🏢 Companies</a></li>
+        <li><a href="mock-tests.html" class="nav-item">📝 Mock Tests</a></li>
+        <li><a href="analytics.html" class="nav-item">📈 Analytics</a></li>
+        <li><a href="achievements.html" class="nav-item active">🏆 Achievements</a></li>
+        <li><a href="settings.html" class="nav-item">⚙️ Settings</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar glass-panel">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+        <div class="topbar-actions">
+          <span class="text-muted" id="current-date"></span>
+          <button class="btn-icon" id="theme-toggle-btn">☀️</button>
+          <div class="profile-btn"><div class="profile-avatar">S</div></div>
+        </div>
+      </header>
+
+      <div class="page-content animate-fade-in">
+        <div style="margin-bottom: 2rem;">
+          <h1 class="text-gradient">Achievements</h1>
+          <p class="text-muted">Gamify your learning journey.</p>
+        </div>
+        
+        <div class="level-card animate-slide-up stagger-1">
+          <div class="level-badge">12</div>
+          <h2>Level 12: <span class="text-gradient">Code Warrior</span></h2>
+          <div class="text-muted">3,450 / 5,000 XP to next level</div>
+          <div class="xp-bar">
+            <div class="xp-progress"></div>
+          </div>
+        </div>
+        
+        <h3 style="margin-bottom: 1.5rem;" class="animate-slide-up stagger-2">Your Badges</h3>
+        <div class="badges-grid animate-slide-up stagger-3">
+          
+          <div class="badge-item">
+            <div class="badge-icon">🐣</div>
+            <div class="badge-title">First Steps</div>
+            <div class="badge-desc">Solved your first problem</div>
+          </div>
+          
+          <div class="badge-item">
+            <div class="badge-icon">🔥</div>
+            <div class="badge-title">On Fire</div>
+            <div class="badge-desc">Maintained a 7-day streak</div>
+          </div>
+          
+          <div class="badge-item">
+            <div class="badge-icon">💯</div>
+            <div class="badge-title">Centurion</div>
+            <div class="badge-desc">Solved 100 problems</div>
+          </div>
+          
+          <div class="badge-item locked">
+            <div class="badge-icon">🏆</div>
+            <div class="badge-title">Mock Master</div>
+            <div class="badge-desc">Score 90%+ in 3 Mock Tests</div>
+          </div>
+          
+          <div class="badge-item locked">
+            <div class="badge-icon">💼</div>
+            <div class="badge-title">Interview Ready</div>
+            <div class="badge-desc">Complete all modules to 80%</div>
+          </div>
+          
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  </script>
+</body>
+</html>

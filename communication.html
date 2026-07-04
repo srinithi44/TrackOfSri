@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Communication Tracker | PlacementOS</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .comm-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .comm-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-md);
+      padding: 1.5rem;
+    }
+    
+    .comm-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .comm-task {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-sm);
+    }
+    
+    .slider-container {
+      margin-top: 1rem;
+    }
+    
+    .confidence-slider {
+      width: 100%;
+      margin: 1rem 0;
+      accent-color: var(--primary);
+    }
+    
+    textarea.input-control {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    @media (max-width: 1024px) {
+      .comm-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <aside class="sidebar glass-panel" id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">P</div>
+        <h2 class="text-gradient">PlacementOS</h2>
+      </div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="nav-item">📊 Dashboard</a></li>
+        <li><a href="planner.html" class="nav-item">📅 Daily Planner</a></li>
+        <li><a href="dsa.html" class="nav-item">💻 DSA Tracker</a></li>
+        <li><a href="aptitude.html" class="nav-item">🧠 Aptitude</a></li>
+        <li><a href="communication.html" class="nav-item active">🗣️ Communication</a></li>
+        <li><a href="companies.html" class="nav-item">🏢 Companies</a></li>
+        <li><a href="mock-tests.html" class="nav-item">📝 Mock Tests</a></li>
+        <li><a href="analytics.html" class="nav-item">📈 Analytics</a></li>
+        <li><a href="achievements.html" class="nav-item">🏆 Achievements</a></li>
+        <li><a href="settings.html" class="nav-item">⚙️ Settings</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar glass-panel">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+        <div class="topbar-actions">
+          <span class="text-muted" id="current-date"></span>
+          <button class="btn-icon" id="theme-toggle-btn">☀️</button>
+          <div class="profile-btn"><div class="profile-avatar">S</div></div>
+        </div>
+      </header>
+
+      <div class="page-content animate-fade-in">
+        <div style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h1 class="text-gradient">Communication Tracker</h1>
+            <p class="text-muted">Improve your speaking and interview skills.</p>
+          </div>
+          <div style="text-align: right;">
+            <div class="text-muted" style="font-size: 0.85rem;">Overall Confidence</div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: var(--success);" id="overall-confidence">0%</div>
+          </div>
+        </div>
+        
+        <div class="comm-grid">
+          
+          <div class="comm-card animate-slide-up stagger-1">
+            <div class="comm-header">
+              <h3>Daily Speaking Practice</h3>
+            </div>
+            <div class="task-list" id="speaking-tasks">
+              <!-- Injected -->
+            </div>
+            <div class="input-group" style="margin-top: 1rem;">
+              <input type="text" id="new-speaking-task" class="input-control" placeholder="Add a new speaking topic...">
+            </div>
+          </div>
+          
+          <div class="comm-card animate-slide-up stagger-2">
+            <div class="comm-header">
+              <h3>HR Questions Prep</h3>
+            </div>
+            <div class="task-list" id="hr-tasks">
+              <!-- Injected -->
+            </div>
+            <div class="slider-container">
+              <label>HR Prep Confidence: <span id="hr-conf-val">0</span>%</label>
+              <input type="range" id="hr-slider" class="confidence-slider" min="0" max="100" value="0">
+            </div>
+          </div>
+
+          <div class="comm-card animate-slide-up stagger-3">
+            <div class="comm-header">
+              <h3>Self Introduction</h3>
+            </div>
+            <textarea id="self-intro-text" class="input-control" placeholder="Write your self introduction here... Practice speaking it in front of a mirror."></textarea>
+            <div class="slider-container">
+              <label>Self Intro Confidence: <span id="intro-conf-val">0</span>%</label>
+              <input type="range" id="intro-slider" class="confidence-slider" min="0" max="100" value="0">
+            </div>
+          </div>
+
+          <div class="comm-card animate-slide-up stagger-4">
+            <div class="comm-header">
+              <h3>Project Explanation</h3>
+            </div>
+            <textarea id="project-text" class="input-control" placeholder="Explain your main project (STAR method: Situation, Task, Action, Result)..."></textarea>
+            <div class="slider-container">
+              <label>Project Explanation Confidence: <span id="project-conf-val">0</span>%</label>
+              <input type="range" id="project-slider" class="confidence-slider" min="0" max="100" value="0">
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/communication.js"></script>
+  <script>
+    document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  </script>
+</body>
+</html>

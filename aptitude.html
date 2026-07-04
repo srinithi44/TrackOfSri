@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aptitude Tracker | PlacementOS</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .aptitude-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    
+    .sections-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .section-tab {
+      padding: 1.5rem;
+      border-radius: var(--border-radius-md);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    
+    .section-tab:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .section-tab.active {
+      border-color: var(--primary);
+      background: rgba(37, 99, 235, 0.05);
+    }
+    
+    .section-tab h3 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .chapters-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .chapter-card {
+      padding: 1.5rem;
+      border-radius: var(--border-radius-md);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+    }
+    
+    .chapter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .chapter-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .stat-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    
+    .stat-input-group label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    
+    .stat-input {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 0.5rem;
+      border-radius: var(--border-radius-sm);
+      width: 100%;
+    }
+    
+    .stat-input:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+    
+    @media (max-width: 1024px) {
+      .chapters-grid { grid-template-columns: 1fr; }
+    }
+    
+    @media (max-width: 768px) {
+      .sections-container { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <aside class="sidebar glass-panel" id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">P</div>
+        <h2 class="text-gradient">PlacementOS</h2>
+      </div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="nav-item">📊 Dashboard</a></li>
+        <li><a href="planner.html" class="nav-item">📅 Daily Planner</a></li>
+        <li><a href="dsa.html" class="nav-item">💻 DSA Tracker</a></li>
+        <li><a href="aptitude.html" class="nav-item active">🧠 Aptitude</a></li>
+        <li><a href="communication.html" class="nav-item">🗣️ Communication</a></li>
+        <li><a href="companies.html" class="nav-item">🏢 Companies</a></li>
+        <li><a href="mock-tests.html" class="nav-item">📝 Mock Tests</a></li>
+        <li><a href="analytics.html" class="nav-item">📈 Analytics</a></li>
+        <li><a href="achievements.html" class="nav-item">🏆 Achievements</a></li>
+        <li><a href="settings.html" class="nav-item">⚙️ Settings</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar glass-panel">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+        <div class="topbar-actions">
+          <span class="text-muted" id="current-date"></span>
+          <button class="btn-icon" id="theme-toggle-btn">☀️</button>
+          <div class="profile-btn"><div class="profile-avatar">S</div></div>
+        </div>
+      </header>
+
+      <div class="page-content animate-fade-in">
+        <div class="aptitude-header">
+          <div>
+            <h1 class="text-gradient">Aptitude Tracker</h1>
+            <p class="text-muted">Master quant, logical and verbal reasoning.</p>
+          </div>
+          <div style="text-align: right;">
+            <div class="text-muted" style="font-size: 0.85rem;">Overall Accuracy</div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: var(--secondary);" id="total-accuracy-text">0%</div>
+          </div>
+        </div>
+        
+        <div class="sections-container animate-slide-up stagger-1" id="sections-container">
+          <!-- Section tabs injected here -->
+        </div>
+
+        <div class="chapters-grid animate-slide-up stagger-2" id="chapters-grid">
+          <!-- Chapter cards injected here -->
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/aptitude.js"></script>
+  <script>
+    document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  </script>
+</body>
+</html>
